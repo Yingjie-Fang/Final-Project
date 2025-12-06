@@ -1,34 +1,55 @@
+
 public class ArrayListTest {
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
 
-        // Add some elements
-        list.add("Apple");
-        list.add("Banana");
-        list.add("Cherry");
-        list.add("Date");
-        list.add("Elderberry");
 
-        System.out.println("List after adding elements: " + list);
-        System.out.println("Size: " + list.size());
 
-        // Get elements
-        System.out.println("Element at index 2: " + list.get(2));
 
-        // Remove an element
-        String removed = list.remove(1);
-        System.out.println("Removed element: " + removed);
-        System.out.println("List after removal: " + list);
-        System.out.println("Size after removal: " + list.size());
-
-        // Add more elements to trigger resizing
-        for (int i = 0; i < 20; i++) {
-            list.add("Fruit" + i);
+        long startTime = System.nanoTime();
+        //adding 100
+        for(int i = 0; i < 1000; i++) {
+            list.add(i);
         }
 
-        System.out.println("\nList after adding more elements (resized):");
-        System.out.println(list);
-        System.out.println("Final size: " + list.size());
+        //deleting 100
+        for(int i = 0; i < 1000; i++) {
+            list.remove(list.size() - 1);
+        }
+        long endTime = System.nanoTime();
+        System.out.println("Time 1000: " + (double) (endTime - startTime) / 1_000_000_000.0);
+
+
+
+        startTime = System.nanoTime();
+        //adding 10000
+        for(int i = 0; i < 10000; i++) {
+            list.add(i);
+        }
+
+        //deleting 10000
+        for(int i = 0; i < 10000; i++) {
+            list.remove(list.size() - 1);
+        }
+        endTime = System.nanoTime();
+        System.out.println("Time 10000: " + (double) (endTime - startTime) / 1_000_000_000.0);
+
+
+
+        startTime = System.nanoTime();
+        //adding 500000
+        for(long i = 0; i < 100000; i++) {
+            list.add((int) i);
+        }
+
+        //deleting 500000
+        for(long i = 0; i < 100000; i++) {
+            list.remove(list.size() - 1);
+        }
+        endTime = System.nanoTime();
+        System.out.println("Time 100000: " + (double) (endTime - startTime) / 1_000_000_000.0);
+
+        System.out.println("end");
     }
 }
 
